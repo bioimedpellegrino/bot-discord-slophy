@@ -10,8 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
-MIN_MEMBER_INVITES = 1
-ROLE_NAME = "penonelungo"
+MIN_MEMBER_INVITES = 20
+ROLE_NAME = "WhiteList Member"
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
@@ -38,7 +38,7 @@ async def on_message(message):
             if i.inviter == message.author:
                 totalInvites += i.uses
         if totalInvites < MIN_MEMBER_INVITES:
-            await message.channel.send(f"You've invited {totalInvites} member{'' if totalInvites == 1 else 's'} to the server!. Invite {MIN_MEMBER_INVITES} to get access to the whitelist!")
+            await message.channel.send(f"You've invited {totalInvites} member{'' if totalInvites == 1 else 's'} to the server! Invite {MIN_MEMBER_INVITES} to get access to the whitelist!")
         else:
             for member_role in message.author.roles:
                 if member_role == role:
