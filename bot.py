@@ -42,6 +42,7 @@ async def on_message(message):
         else:
             for member_role in message.author.roles:
                 if member_role == role:
+                    await message.channel.send(f"You've invited {totalInvites} member{'' if totalInvites == 1 else 's'} to the server!")
                     return
             member = message.author
             await member.add_roles(role)
