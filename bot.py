@@ -31,7 +31,7 @@ async def on_member_join(member):
     
 @client.event
 async def on_message(message):
-    if message.content.startswith('!invites'):
+    if message.content.startswith('!invites') and str(message.channel).strip.lower() == 'ranks-and-leaderboard':
         role = discord.utils.get(message.author.guild.roles, name=ROLE_NAME)
         totalInvites = 0
         for i in await message.guild.invites():
@@ -47,5 +47,7 @@ async def on_message(message):
             member = message.author
             await member.add_roles(role)
             await message.channel.send(f"Congratulations! You've invited {totalInvites} member{'' if totalInvites == 1 else 's'} to the server! Now you have been added to the whitelist channel :)")
+    if message.content.startswith('!gabino') and str(message.channel).strip.lower() == 'ranks-and-leaderboard':
+        await message.channel.send("CAZZO MI FA MALEEEE IL CAZZOOOOOOOOOOO!")
 
 client.run(TOKEN)
